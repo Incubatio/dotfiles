@@ -2,13 +2,12 @@
 set nu
 set showmatch
 
-set expandtab
+
 set title
 
 " hightlight and incremental search
 set  hlsearch
 set incsearch
-
 
 "set autoindent 
 "set smartindent
@@ -20,13 +19,13 @@ set nocindent
 set wrap
 
 if has("autocmd")
-    au FileType cpp,c,java,sh,pl,php set cindent
-"   filetype plugin indent on 
-    au FileType rb,py,php set cindent autoindent smartindent filetype plugin indent on
+	
+    au BufRead *.cpp,*.c,*.java,*.sh,*.pl,*.php set cindent autoindent smartindent
+	au BufRead *.py filetype plugin indent on
     au BufRead *.py emenu Snippets.python
-    au BufRead *.php emenu Snippets.php
-    au BufRead *.py set cinwords=if,elif,else,for,while,try,except,finally,def,class tabstop =4 softtabstop =4 shiftwidth =4
-    au BufRead *.rb,*.erb set cinwords=if,elsif,else,unless,for,while,begin,rescue,def,class,module tabstop =2 softtabstop =2 shiftwidth =2 autoindent
+"    au BufRead *.php emenu Snippets.php
+    au BufRead *.py set cinwords=if,elif,else,for,while,try,except,finally,def,class tabstop =4 softtabstop =4 shiftwidth =4 expandtab
+    au BufRead *.rb,*.erb set cinwords=if,elsif,else,unless,for,while,begin,rescue,def,class,module tabstop =2 softtabstop =2 shiftwidth =2
     "au BufRead *.py set smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
     "au BufRead *.rb set smartindent cinwords=if,elsif,else,unless,for,while,begin,rescue,def,class,module
 endif
@@ -43,3 +42,6 @@ hi Special ctermfg=darkCyan
 hi Constant ctermfg=darkCyan
 hi Comment ctermfg=darkGreen
 au BufRead,BufNewFile *.rb hi rubySymbol ctermfg=green
+
+"nnoremap <F2> :set invet <bar> retab!<CR>
+"imap <F2> <Esc>:set invet <bar> retab!<CR>

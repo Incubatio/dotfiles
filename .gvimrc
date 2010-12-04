@@ -1,9 +1,9 @@
-set go-=T
-set bg=dark
-if &background == "dark"
-    hi normal guibg=black
-    set transp=5
-endif
+"set go-=T
+"set bg=dark
+"if &background == "dark"
+"    hi normal guibg=black
+"    set transp=5
+"endif
 
 " number of line and
 set nu

@@ -18,7 +18,7 @@ alias 'ls=ls -hG'
 alias 'e2=sudo killall e2fsck'
 alias 'r=rails'
 alias 'dj=python manage.py'
-alias 'fr=find . -name "*??*" -print | xargs sed -i ' #"s/var1/var2/g
+alias 'sr=find . -name "*??*" -print | xargs gunused -i ' #"s/var1/var2/g
 alias historyf="history -f"
 
 #[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
@@ -28,7 +28,7 @@ export SVN_EDITOR=vim
 export EDITOR=vim
 
 ## MacPorts ##
-export PATH=$PATH:/opt/local/bin:/opt/local/sbin
+export PATH=$PATH:/usr/local/bin:/usr/local/sbin
 export MANPATH=$MANPATH:/opt/local/share/man
 
 ### Style ###
@@ -62,7 +62,7 @@ PS4=" | Debug (%N:$i)> "                           # Trace
 fpath=(~/myfns $fpath)
 
 #### Correction orthographique
-SPROMPT=" | ${fg[cyan]}➜ correct '%R' to '%r' ? ([Y]es/[N]o/[E]dit/[A]bort) "
+#SPROMPT=" | ${fg[cyan]}➜ correct '%R' to '%r' ? ([Y]es/[N]o/[E]dit/[A]bort) "
 #fpath=(~/myfns $fpath)
 
 ### History ###
@@ -82,7 +82,8 @@ setopt EXTENDED_HISTORY
 
 ### Misc ###
 
-setopt correctall
+#setopt correctall
+
 setopt autocd
 setopt extendedglob 
 setopt always_to_end 
@@ -98,6 +99,7 @@ bindkey    "^[3;5~"         delete-char
 # exec 2>>(while read line; do
 #   print '\e[91m'${(q)line}'\e[0m' > /dev/tty; done &)
 exec 2>>(colorize `tput setaf 1` `tput sgr0` > /dev/tty &)
+#exec 2>>(while read line; do print '\e[91m'${(q)line}'\e[0m' > /dev/tty; done &)
 
 
 ### Auto Completion ###

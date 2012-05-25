@@ -2727,7 +2727,7 @@ endfunction
 
 if g:NERDCreateDefaultMappings
     call s:CreateMaps('<plug>NERDCommenterComment',    '<leader>cc')
-    call s:CreateMaps('<plug>NERDCommenterToggle',     '<leader>')
+    call s:CreateMaps('<plug>NERDCommenterToggle',     '<leader>c<space>')
     call s:CreateMaps('<plug>NERDCommenterMinimal',    '<leader>cm')
     call s:CreateMaps('<plug>NERDCommenterSexy',       '<leader>cs')
     call s:CreateMaps('<plug>NERDCommenterInvert',     '<leader>ci')

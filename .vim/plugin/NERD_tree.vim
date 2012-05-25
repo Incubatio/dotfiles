@@ -156,7 +156,7 @@ let s:next_buffer_number = 1
 " SECTION: Commands {{{1
 "============================================================
 "init the command that users start the nerd tree with
-command! -n=? -complete=dir -bar NT :call s:initNerdTree('<args>')
+command! -n=? -complete=dir -bar NERDTree :call s:initNerdTree('<args>')
 command! -n=? -complete=dir -bar NERDTreeToggle :call s:toggle('<args>')
 command! -n=0 -bar NERDTreeClose :call s:closeTreeIfOpen()
 command! -n=1 -complete=customlist,s:completeBookmarks -bar NERDTreeFromBookmark call s:initNerdTree('<args>')

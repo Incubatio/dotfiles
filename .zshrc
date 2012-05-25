@@ -1,7 +1,14 @@
-# system-wide profile for zsh(1)
+# path_helper
 #if [ -x /usr/libexec/path_helper ]; then
 #	eval `/usr/libexec/path_helper -s`
-#fi
+
+### Welcome messages ###
+print -P "\e[1;32m Welcome to: \e[1;34m%n@%m"
+print -P "\e[1;32m Running: \e[1;34m`uname -srm`\e[1;32m on \e[1;34m%l"
+print -P "\e[1;32m Today is:\e[1;34m %D{%r} \e[1;32m"
+
+### Ls color ###
+export LSCOLORS="BxfxGxdxcxegedabagacAd"
  
 ### Alias ###
 alias 'updatedb=sudo /usr/libexec/locate.updatedb'
@@ -10,16 +17,17 @@ alias 'updatedb=sudo /usr/libexec/locate.updatedb'
 alias 'pingg=ping -c 3 www.google.fr'
 alias 'cd..=cd ..'
 alias 'll=ls -l'
-alias 'la=ls -a'
+alias 'la=ls -ahG'
 alias 'lla=ls -al'
 alias 'psm=ps -efc -m'
 alias 'psaux=ps aux -c'
-alias 'ls=ls -hG'
+alias 'ls=ls -G'
 alias 'e2=sudo killall e2fsck'
 alias 'r=rails'
 alias 'dj=python manage.py'
 alias 'sr=find . -name "*??*" -print | xargs gunused -i ' #"s/var1/var2/g
-alias historyf="history -f"
+alias 'historyf=history -f'
+alias 'myip=curl http://bokunotenshi.free.fr/ip.php'
 
 #[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 
@@ -28,8 +36,8 @@ export SVN_EDITOR=vim
 export EDITOR=vim
 
 ## MacPorts ##
-export PATH=$PATH:/usr/local/bin:/usr/local/sbin
-export MANPATH=$MANPATH:/opt/local/share/man
+#export PATH=$PATH:/usr/local/bin:/usr/local/sbin
+#export MANPATH=$MANPATH:/opt/local/share/man
 
 ### Style ###
 # Initilise les couleurs
@@ -41,26 +49,26 @@ autoload -U promptinit && promptinit
 
 #prompt walters
 #export TERM=xterm-256color 
-#PS1="%B%{${fg[cyan]}%}>%n%{${fg[green]}%}:%1d%{${fg[red]}%}%#%b "
-local blue_op="%{$fg[blue]%}[%b"
-local blue_cp="%{$fg[blue]%}]%b"
-local path_p="${blue_op}%{$fg[green]%}%~${blue_cp}"
-local user_host="${blue_op}%n%{$fg[blue]%}@%b%m${blue_cp}"
+local g="%{${fg[green]}%}"
+local r="%{${fg[red]}%}"
+local b="%{${fg[blue]}%}"
+local c="%{${fg[cyan]}%}"
+local _path="${g}%~"
 local ret_status="%?"
-local hist_no="%h"
-local smiley="%(?,%{$fg[green]%}>%b%{$fg[green]%}<')))%B°>%b,%{$fg[red]%}%)-(><%)-(%b)"
-local prompt="%(?,
-%B╭─(%b${hist_no}%B)─=>%b${user_host}%B─=>%b${path_p}
-%B╰ ─=${smiley} %# ,%B╰ ─=${smiley} %# )"
+local smiley="%(?,${g}>%b${g}<')))%B°>%b,${r}%)---(><%)---(%b)"
+#PS1="%B%{${c}%}>%n${g}:%1d$r}%#%b "
 
-local cur_cmd="${blue_op}%_${blue_cp}"
-PS2=" | ${fg[blue]}➜ ${cur_cmd}> "		#commande incomplete
-RPS1="${ret_status}-[%B%T%b]"
+PS1="%(?,${b}%B╰ ─
+╭─(%b${g}${_path}${b}%B%)─==${smiley}${g} %# ,%B${b}╰ (%b${_path}%B${b}${smiley}${r} %# )"
+
+RPS1="%B─=>%b${b}[%T${b}]-${g}${ret_status}${b}-[${g}%h${b}]${g}"
+
+local cur_cmd="${b}[%_${b}]"
+PS2=" | ${b}➜ ${cur_cmd}> "		#commande incomplete
 PS3=" | Selection ? "                              # Select
 PS4=" | Debug (%N:$i)> "                           # Trace
 
-fpath=(~/myfns $fpath)
-
+#fpath=(~/myfns $fpath)
 #### Correction orthographique
 #SPROMPT=" | ${fg[cyan]}➜ correct '%R' to '%r' ? ([Y]es/[N]o/[E]dit/[A]bort) "
 #fpath=(~/myfns $fpath)
@@ -98,7 +106,7 @@ bindkey    "^[3;5~"         delete-char
 ### Error color ###
 # exec 2>>(while read line; do
 #   print '\e[91m'${(q)line}'\e[0m' > /dev/tty; done &)
-exec 2>>(colorize `tput setaf 1` `tput sgr0` > /dev/tty &)
+#exec 2>>(colorize `tput setaf 1` `tput sgr0` > /dev/tty &)
 #exec 2>>(while read line; do print '\e[91m'${(q)line}'\e[0m' > /dev/tty; done &)
 
 
@@ -208,4 +216,8 @@ autoload -U tetris
 zle -N tetris
 bindkey "\el" tetris
 
-source /Users/incubatio/.rvm/scripts/rvm
+source /Users/neekl/.rvm/scripts/rvm
+[[ -s $HOME/.pythonbrew/etc/bashrc ]] && source $HOME/.pythonbrew/etc/bashrc
+
+PATH=/usr/local/zend/bin:$PATH
+LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/zend/lib

@@ -220,4 +220,5 @@ source /Users/neekl/.rvm/scripts/rvm
 [[ -s $HOME/.pythonbrew/etc/bashrc ]] && source $HOME/.pythonbrew/etc/bashrc
 
 PATH=/usr/local/zend/bin:$PATH
+PATH=/usr/local/zend/mysql/bin:$PATH
 LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/zend/lib

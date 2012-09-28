@@ -56,6 +56,12 @@ nnoremap <leader>n :NERDTreeToggle<CR>
 
 command NT NERDTree
 
+
+"noremap <leader>p :call PhpDocSingle()<CR> 
+nnoremap <leader>p :call PhpDocSingle()<CR> 
+vnoremap <leader>p :call PhpDocRange()<CR> 
+command DOC PhpDoc
+
 "nnoremap <leader> :call NERDComment(0, "toggle")<cr>
 "let NERD_<filetype>_alt_style=1
 

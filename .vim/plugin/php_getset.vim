@@ -256,7 +256,7 @@ else
   let s:phpgetset_getterTemplate =
     \ "    \n" .
     \ "    /**\n" .
-    \ "     * @return mixed.\n" .
+    \ "     * @return mixed\n" .
     \ "     */\n" .
     \ "    public function %funcname%()\n" .
     \ "    {\n" .
@@ -272,7 +272,7 @@ else
   let s:phpgetset_setterTemplate =
   \ "    \n" .
   \ "    /**\n" .
-  \ "     * @param mixed %varname% \n" .
+  \ "     * @param mixed $%varname% \n" .
   \ "     * @return %classname%\n" .
   \ "     */\n" .
   \ "    public function %funcname%($%varname%)\n" .

@@ -509,7 +509,8 @@ if !exists("*s:ProcessVariable")
     let s:classline = search(s:classregex, 'bnW')
     echo s:classline
     if s:classline
-    let s:classname = substitute(matchstr(getline(s:classline), s:classregex), 'class *', '', '')
+    "let s:classname = substitute(matchstr(getline(s:classline), s:classregex), 'class *', '', '')
+    let s:classname = '$this'
 
   endif
 

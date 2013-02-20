@@ -1,0 +1,9 @@
+#escape ^Qq
+#escape ^Ll
+escape ^Xx
+
+startup_message off
+vbell off
+#autodetach on
+
+defscrollback 10000

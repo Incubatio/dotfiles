@@ -28,8 +28,10 @@ alias 'dj=python manage.py'
 alias 'sr=find . -name "*??*" -print | xargs gunused -i ' #"s/var1/var2/g
 alias 'historyf=history -f'
 alias 'myip=curl http://bokunotenshi.free.fr/ip.php'
+alias 'rm=~/bin/rm'
 
-#[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+alias 'yam=~/dev/PHP/yam/bin/yam'
+
 
 ### Editeurs par defaut ###
 export SVN_EDITOR=vim
@@ -216,10 +218,27 @@ autoload -U tetris
 zle -N tetris
 bindkey "\el" tetris
 
-source /Users/neekl/.rvm/scripts/rvm
-[[ -s $HOME/.pythonbrew/etc/bashrc ]] && source $HOME/.pythonbrew/etc/bashrc
+#source ~/.rvm/scripts/rvm
+source ~/.nvm/nvm.sh
 
+#[[ -s $HOME/.pythonbrew/etc/bashrc ]] && source $HOME/.pythonbrew/etc/bashrc
+
+PATH=/usr/local/sbin:$PATH
 PATH=/usr/local/bin:$PATH
 PATH=/usr/local/zend/bin:$PATH
 PATH=/usr/local/zend/mysql/bin:$PATH
 LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/zend/lib
+
+#PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+#PATH="$PATH:$HOME/.nvm/current/bin/"
+
+
+ #source ~/.brew-growl
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
+
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"
+
+### Added for the zombie module (npm)
+export NODE_PATH=/Users/zell/.nvm/v0.8.14/lib/node_modules/

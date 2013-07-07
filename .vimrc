@@ -1,6 +1,7 @@
 " number of line and
 set nu
 set showmatch
+set ruler
 
 
 set title
@@ -68,3 +69,19 @@ command DOC PhpDoc
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929
 match OverLength /\%121v.\+/
 "match ErrorMsg '\%>120v.+'
+
+
+"refresh firefox from vim
+"autocmd BufWriteCmd *.html,*.css,*.coffee,*.js,*.php :call Refresh_firefox()
+autocmd BufWriteCmd *.html,*.css,*.gtpl :call Refresh_firefox()
+function! Refresh_firefox()
+  if &modified
+    write
+    silent !echo  'vimYo = content.window.pageYOffset;
+          \ vimXo = content.window.pageXOffset;
+          \ BrowserReload();
+          \ content.window.scrollTo(vimXo,vimYo);
+          \ repl.quit();'  |
+          \ nc -w 1 localhost 4242 2>&1 > /dev/null
+  endif
+endfunction

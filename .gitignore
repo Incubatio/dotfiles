@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 *
 !.vim
 !.vim/*
@@ -9,7 +8,6 @@
 !.gvimrc
 !.zhrc
 !.gitignore
-=======
 node_modules
 client-build
 build.txt
@@ -18,4 +16,4 @@ config_local*
 client/audio/music
 .DS_Store
 *.swp
->>>>>>> af32d247cac3495ca430d0effbb88dd5f3250b2c
+.netrwhist

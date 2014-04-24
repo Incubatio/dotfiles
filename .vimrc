@@ -45,6 +45,7 @@ hi Special ctermfg=grey
 hi Constant ctermfg=darkcyan
 hi Comment ctermfg=magenta
 au BufRead,BufNewFile *.rb hi rubySymbol ctermfg=green
+au BufRead,BufNewFile *.as set ft=java
 
 "nnoremap <F2> :set invet <bar> retab!<CR>
 "imap <F2> <Esc>:set invet <bar> retab!<CR>
@@ -85,3 +86,5 @@ function! Refresh_firefox()
           \ nc -w 1 localhost 4242 2>&1 > /dev/null
   endif
 endfunction
+
+set runtimepath^=~/.vim/plugin/ctrlp.vim

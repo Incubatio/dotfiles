@@ -78,7 +78,7 @@ let g:pdv_cfg_CommentSingle = "//"
 let g:pdv_cfg_Type = "mixed"
 let g:pdv_cfg_Package = ""
 let g:pdv_cfg_Version = ""
-let g:pdv_cfg_Author = "NMO <nico@multeegaming.com>"
+let g:pdv_cfg_Author = "NMO <nico@incubatio.org>"
 let g:pdv_cfg_Copyright = ""
 let g:pdv_cfg_License = "" 
 

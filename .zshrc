@@ -29,6 +29,7 @@ alias 'sr=find . -name "*??*" -print | xargs gunused -i ' #"s/var1/var2/g
 alias 'historyf=history -f'
 alias 'myip=curl http://bokunotenshi.free.fr/ip.php'
 alias 'rm=~/bin/rm'
+alias 'vacum=play ~/Music/vacuum.mp3 &>/dev/null </dev/null &'
 
 alias 'yam=~/dev/PHP/yam/bin/yam'
 
@@ -227,6 +228,7 @@ PATH=/usr/local/sbin:$PATH
 PATH=/usr/local/bin:$PATH
 PATH=/usr/local/zend/bin:$PATH
 PATH=/usr/local/zend/mysql/bin:$PATH
+PATH=/Applications/AIRSDK_Compiler/bin:$PATH
 LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/zend/lib
 
 #PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting

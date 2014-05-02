@@ -64,12 +64,12 @@ local smiley="%(?,${g}>%b${g}<')))%B°>%b,${r}%)---(><%)---(%b)"
 PS1="%(?,${b}%B╰ ─
 ╭─(%b${g}${_path}${b}%B%)─==${smiley}${g} %# ,%B${b}╰ (%b${_path}%B${b}${smiley}${r} %# )"
 
-RPS1="%B─=>%b${b}[%T${b}]-${g}${ret_status}${b}-[${g}%h${b}]${g}"
+RPS1="%B─=>%b${b}[%T${b}]-${g}${ret_status}${b}-[${g}%h${b}]${g}%{$reset_color%}"
 
 local cur_cmd="${b}[%_${b}]"
 PS2=" | ${b}➜ ${cur_cmd}> "		#commande incomplete
-PS3=" | Selection ? "                              # Select
-PS4=" | Debug (%N:$i)> "                           # Trace
+PS3=" | Selection ? "         # Select
+PS4=" | Debug (%N:$i)> "      # Trace
 
 #fpath=(~/myfns $fpath)
 #### Correction orthographique

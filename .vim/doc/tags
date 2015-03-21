@@ -32,6 +32,9 @@
 'NERDUsePlaceHolders'	NERD_commenter.txt	/*'NERDUsePlaceHolders'*
 'loaded_nerd_comments'	NERD_commenter.txt	/*'loaded_nerd_comments'*
 'loaded_nerd_tree'	NERD_tree.txt	/*'loaded_nerd_tree'*
+:CoffeeCompile	coffee-script.txt	/*:CoffeeCompile*
+:CoffeeMake	coffee-script.txt	/*:CoffeeMake*
+:CoffeeRun	coffee-script.txt	/*:CoffeeRun*
 :CommandT	command-t.txt	/*:CommandT*
 :CommandTBuffer	command-t.txt	/*:CommandTBuffer*
 :CommandTFlush	command-t.txt	/*:CommandTFlush*
@@ -144,6 +147,14 @@ NERD_commenter.txt	NERD_commenter.txt	/*NERD_commenter.txt*
 NERD_tree.txt	NERD_tree.txt	/*NERD_tree.txt*
 Vimball-copyright	pi_vimball.txt	/*Vimball-copyright*
 basic-snippet	snippets_emu.txt	/*basic-snippet*
+coffee-script	coffee-script.txt	/*coffee-script*
+coffee-script-author	coffee-script.txt	/*coffee-script-author*
+coffee-script-commands	coffee-script.txt	/*coffee-script-commands*
+coffee-script-contents	coffee-script.txt	/*coffee-script-contents*
+coffee-script-introduction	coffee-script.txt	/*coffee-script-introduction*
+coffee-script-license	coffee-script.txt	/*coffee-script-license*
+coffee-script-settings	coffee-script.txt	/*coffee-script-settings*
+coffee-script.txt	coffee-script.txt	/*coffee-script.txt*
 command-t	command-t.txt	/*command-t*
 command-t-authors	command-t.txt	/*command-t-authors*
 command-t-commands	command-t.txt	/*command-t-commands*
@@ -162,9 +173,11 @@ command-t-usage	command-t.txt	/*command-t-usage*
 command-t-website	command-t.txt	/*command-t-website*
 command-t-wildignore	command-t.txt	/*command-t-wildignore*
 command-t.txt	command-t.txt	/*command-t.txt*
+compiler-coffee-script	coffee-script.txt	/*compiler-coffee-script*
 creating-snippets	snippets_emu.txt	/*creating-snippets*
 cs	surround.txt	/*cs*
 ds	surround.txt	/*ds*
+ft-coffee-script-syntax	coffee-script.txt	/*ft-coffee-script-syntax*
 g:CommandTAcceptSelectionMap	command-t.txt	/*g:CommandTAcceptSelectionMap*
 g:CommandTAcceptSelectionSplitMap	command-t.txt	/*g:CommandTAcceptSelectionSplitMap*
 g:CommandTAcceptSelectionTabMap	command-t.txt	/*g:CommandTAcceptSelectionTabMap*
@@ -189,6 +202,8 @@ g:CommandTScanDotDirectories	command-t.txt	/*g:CommandTScanDotDirectories*
 g:CommandTSelectNextMap	command-t.txt	/*g:CommandTSelectNextMap*
 g:CommandTSelectPrevMap	command-t.txt	/*g:CommandTSelectPrevMap*
 g:CommandTToggleFocusMap	command-t.txt	/*g:CommandTToggleFocusMap*
+g:coffee_compile_vert	coffee-script.txt	/*g:coffee_compile_vert*
+g:coffee_make_options	coffee-script.txt	/*g:coffee_make_options*
 g:vimball_home	pi_vimball.txt	/*g:vimball_home*
 g:vimball_mkdir	pi_vimball.txt	/*g:vimball_mkdir*
 i_CTRL-G_S	surround.txt	/*i_CTRL-G_S*

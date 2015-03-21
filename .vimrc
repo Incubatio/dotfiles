@@ -14,16 +14,16 @@ set incsearch
 set tabstop =2
 set softtabstop =2 
 set shiftwidth =2
-set cindent
   
 
-set smartindent
+"set cindent
+"set smartindent
 set autoindent
 set expandtab
 set wrap 
 
 if has("autocmd")
-  au BufRead *.coffee,*.py set nocindent noautoindent
+  "au BufRead *.coffee,*.py set nocindent noautoindent
   au BufRead *.php emenu Snippets.php
   "au BufRead *.php set tabstop =4 softtabstop =4 shiftwidth =4 expandtab
 	au BufRead *.py filetype plugin indent on
@@ -58,6 +58,10 @@ command NT NERDTree
 "nnoremap <leader>gs :InsertBothGetterSetter<CR>
 "command -range -buffer GS InsertBothGetterSetter
 
+inoremap <C-c> <esc>:w<CR>
+"inoremap jk <esc>:w<CR>
+"inoremap kj <esc>:w<CR>
+
 
 "noremap <leader>p :call PhpDocSingle()<CR> 
 nnoremap <leader>p :call PhpDocSingle()<CR> 
@@ -88,5 +92,17 @@ function! Refresh_firefox()
   endif
 endfunction
 
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+
 "set runtimepath^=~/.vim/plugin/ctrlp.vim
 execute pathogen#infect()
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ["actionscript"] }
+"nnoremap <C-w>E :SyntasticCheck<CR> :SyntasticToggleMode<CR>

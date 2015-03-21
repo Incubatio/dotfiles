@@ -29,12 +29,13 @@ alias 'sr=find . -name "*??*" -print | xargs gunused -i ' #"s/var1/var2/g
 alias 'historyf=history -f'
 alias 'myip=curl http://bokunotenshi.free.fr/ip.php'
 alias 'rm=~/bin/rm'
-alias 'vacum=play ~/Music/vacuum.mp3 &>/dev/null </dev/null &'
+alias 'vacum=play ~/Documents/Music/vacuum.mp3 &>/dev/null </dev/null &'
 
 alias 'yam=~/dev/PHP/yam/bin/yam'
 
+alias 'pwet=find . -name "*.coffee" -exec bash -c "echo mv $0 ${0/stuff1/stuff2}" {} \;'
 
-### Editeurs par defaut ###
+### Default EDitors ###
 export SVN_EDITOR=vim
 export EDITOR=vim
 
@@ -43,24 +44,22 @@ export EDITOR=vim
 #export MANPATH=$MANPATH:/opt/local/share/man
 
 ### Style ###
-# Initilise les couleurs
 autoload -U colors && colors
 
 ### Prompt ###
-# Initialise le prompt 
 autoload -U promptinit && promptinit
 
 #prompt walters
 #export TERM=xterm-256color 
-local g="%{${fg[green]}%}"
-local r="%{${fg[red]}%}"
-local b="%{${fg[blue]}%}"
-local c="%{${fg[cyan]}%}"
+local g="%{$fg[green]%}"
+local r="%{$fg[red]%}"
+local b="%{$fg[blue]%}"
+local c="%{$fg[cyan]%}"
 local _path="${g}%~"
 local ret_status="%?"
 local smiley="%(?,${g}>%b${g}<')))%B°>%b,${r}%)---(><%)---(%b)"
-#PS1="%B%{${c}%}>%n${g}:%1d$r}%#%b "
 
+#PS1="%B%{${c}%}>%n${g}:%1d$r}%#%b "
 PS1="%(?,${b}%B╰ ─
 ╭─(%b${g}${_path}${b}%B%)─==${smiley}${g} %# ,%B${b}╰ (%b${_path}%B${b}${smiley}${r} %# )"
 
@@ -78,7 +77,7 @@ PS4=" | Debug (%N:$i)> "      # Trace
 
 ### History ###
 
-export HISTSIZE=2000
+export HISTSIZE=5000
 export SAVEHIST=$HISTSIZE
 export HISTFILE="$HOME/.zsh_history"
 
@@ -114,7 +113,6 @@ bindkey    "^[3;5~"         delete-char
 
 
 ### Auto Completion ###
-
 autoload -U compinit && compinit 
 
 #Completion
@@ -136,7 +134,7 @@ zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -A -o pid,%cpu,%mem,comm'
 
 # Menu
-# to much KikooLol
+# too much KikooLol
 # zstyle ':completion:*:*:*' menu yes select
 
 # Options
@@ -244,3 +242,4 @@ export PATH="/usr/local/heroku/bin:$PATH"
 
 ### Added for the zombie module (npm)
 export NODE_PATH=/Users/zell/.nvm/v0.8.14/lib/node_modules/
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

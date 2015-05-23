@@ -33,7 +33,11 @@ alias 'vacum=play ~/Documents/Music/vacuum.mp3 &>/dev/null </dev/null &'
 
 alias 'yam=~/dev/PHP/yam/bin/yam'
 
+# rename file with some regex
 alias 'pwet=find . -name "*.coffee" -exec bash -c "echo mv $0 ${0/stuff1/stuff2}" {} \;'
+
+# rename all file to lower case
+### for f in * ; do mv -v $f `echo $f | tr '[A-Z]' '[a-z]'`; done
 
 ### Default EDitors ###
 export SVN_EDITOR=vim

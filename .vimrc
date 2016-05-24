@@ -12,15 +12,15 @@ set incsearch
 
 " Tab spacing
 set tabstop =2
-set softtabstop =2 
+set softtabstop =2
 set shiftwidth =2
-  
+
 
 "set cindent
 "set smartindent
 set autoindent
 set expandtab
-set wrap 
+set wrap
 
 if has("autocmd")
   "au BufRead *.coffee,*.py set nocindent noautoindent
@@ -32,65 +32,42 @@ if has("autocmd")
   au BufRead *.haml,*.rb,*.erb set cinwords=if,elsif,else,unless,for,while,begin,rescue,def,class,module shiftwidth =2
     "au BufRead *.py set smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
     "au BufRead *.rb set smartindent cinwords=if,elsif,else,unless,for,while,begin,rescue,def,class,module
+  au BufRead,BufNewFile *.as set ft=actionscript
 endif
-
-syntax on
-"set background=white
-"hi Normal ctermfg=grey ctermbg=darkgrey
-hi Normal ctermfg=darkgreen 
-hi PreProc ctermfg=grey
-hi Statement ctermfg=darkYellow
-hi Type ctermfg=darkyellow
-hi Function ctermfg=darkcyan
-hi Identifier ctermfg=darkgreen
-hi Special ctermfg=grey
-hi Constant ctermfg=darkcyan
-hi Comment ctermfg=magenta
-au BufRead,BufNewFile *.rb hi rubySymbol ctermfg=green
-au BufRead,BufNewFile *.as set ft=actionscript
 
 "nnoremap <F2> :set invet <bar> retab!<CR>
 "imap <F2> <Esc>:set invet <bar> retab!<CR>
 let mapleader = "'"
-nnoremap <leader>n :NERDTreeToggle<CR>
-command NT NERDTree
-
 "nnoremap <leader>gs :InsertBothGetterSetter<CR>
 "command -range -buffer GS InsertBothGetterSetter
 
-inoremap <C-c> <esc>:w<CR>
-"inoremap jk <esc>:w<CR>
-"inoremap kj <esc>:w<CR>
 
 
-"noremap <leader>p :call PhpDocSingle()<CR> 
-nnoremap <leader>p :call PhpDocSingle()<CR> 
-vnoremap <leader>p :call PhpDocRange()<CR> 
-command DOC PhpDoc
+
+"autocmd BufNewFile,BufRead * highlight trailing_spaces ctermbg=Red
+"autocmd BufNewFile,BufRead * match trailing_spaces /\s\+$/
+
+
 
 "nnoremap <leader> :call NERDComment(0, "toggle")<cr>
 "let NERD_<filetype>_alt_style=1
 
-"match when a line is over 120 chars
-highlight OverLength ctermbg=red ctermfg=white guibg=#592929
-match OverLength /\%121v.\+/
-"match ErrorMsg '\%>120v.+'
 
 
 "refresh firefox from vim
 "autocmd BufWriteCmd *.html,*.css,*.coffee,*.js,*.php :call Refresh_firefox()
-autocmd BufWriteCmd *.html,*.css,*.gtpl :call Refresh_firefox()
-function! Refresh_firefox()
-  if &modified
-    write
-    silent !echo  'vimYo = content.window.pageYOffset;
-          \ vimXo = content.window.pageXOffset;
-          \ BrowserReload();
-          \ content.window.scrollTo(vimXo,vimYo);
-          \ repl.quit();'  |
-          \ nc -w 1 localhost 4242 2>&1 > /dev/null
-  endif
-endfunction
+"autocmd BufWriteCmd *.html,*.css,*.gtpl :call Refresh_firefox()
+"function! Refresh_firefox()
+"  if &modified
+"    write
+"    silent !echo  'vimYo = content.window.pageYOffset;
+"          \ vimXo = content.window.pageXOffset;
+"          \ BrowserReload();
+"          \ content.window.scrollTo(vimXo,vimYo);
+"          \ repl.quit();'  |
+"          \ nc -w 1 localhost 4242 2>&1 > /dev/null
+"  endif
+"endfunction
 
 
 set statusline+=%#warningmsg#
@@ -104,5 +81,68 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
-let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ["actionscript"] }
+let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ["actionscript", "haxe"] }
 "nnoremap <C-w>E :SyntasticCheck<CR> :SyntasticToggleMode<CR>
+
+"noremap <leader>p :call PhpDocSingle()<CR>
+nnoremap <leader>p :call PhpDocSingle()<CR>
+vnoremap <leader>p :call PhpDocRange()<CR>
+command DOC PhpDoc
+
+"for vim-better-whitespace plugin
+noremap <leader>l :StripWhitespace<CR>
+"inoremap <leader>n :!osascript /Users/igor/Documents/run.scpt <CR> <CR>
+command NT NERDTree
+
+"inoremap <esc> <NOP>
+"noremap <esc> <NOP>
+inoremap  <Up>     <NOP>
+inoremap  <Down>   <NOP>
+inoremap  <Left>   <NOP>
+inoremap  <Right>  <NOP>
+noremap   <Up>     <NOP>
+noremap   <Down>   <NOP>
+noremap   <Left>   <NOP>
+noremap   <Right>  <NOP>
+
+inoremap <Backspace> <NOP>
+noremap <Backspace> <NOP>
+
+
+"inoremap <leader>w <esc>:w<CR>
+"inoremap <C-space> <esc>:w<CR>
+nnoremap <NUL> :w<CR>
+inoremap <C-c>  <esc>
+"inoremap jk <esc>:w<CR>
+"inoremap kj <esc>:w<CR>
+
+"compilation is now managed from tmux
+"noremap <leader>b <C-c>:w<CR> :!osascript /Users/igor/Documents/compile.scpt <CR> <CR>
+"noremap <leader>n :!osascript /Users/igor/Documents/run.scpt <CR> <CR>
+
+syntax on
+syntax enable
+set background=dark
+"let g:solarized_termcolors=256
+"set background=light
+colorscheme turtle
+
+"set background=white
+
+
+let g:syntastic_html_tidy_ignore_errors = [
+  \ 'trimming empty <i>',
+  \ 'trimming empty <span>',
+  \ '<input> proprietary attribute \"autocomplete\"',
+  \ 'proprietary attribute \"role\"',
+  \ 'proprietary attribute \"hidden\"',
+  \ 'proprietary attribute \"ng-',
+  \ '<svg> is not recognized!',
+  \ 'discarding unexpected <svg>',
+  \ 'discarding unexpected </svg>',
+  \ '<rect> is not recognized!',
+  \ '<path> is not recognized!',
+  \ 'discarding unexpected </path>',
+  \ 'discarding unexpected <path>',
+  \ 'discarding unexpected <rect>'
+  \ ]

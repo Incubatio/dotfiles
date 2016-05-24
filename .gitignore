@@ -8,6 +8,14 @@
 !.gvimrc
 !.zhrc
 !.gitignore
+!.tmux
+!.tmux/*
+!.tmux/*/*
+!.tmux/*/*/*
+!.tmux/*/*/*/*
+!.tmux.conf
+!mac/
+!mac/*
 node_modules
 client-build
 build.txt

@@ -1,20 +1,16 @@
-# path_helper
 #if [ -x /usr/libexec/path_helper ]; then
 #	eval `/usr/libexec/path_helper -s`
 
-### Welcome messages ###
-print -P "\e[1;32m Welcome to: \e[1;34m%n@%m"
-print -P "\e[1;32m Running: \e[1;34m`uname -srm`\e[1;32m on \e[1;34m%l"
-print -P "\e[1;32m Today is:\e[1;34m %D{%r} \e[1;32m"
-
 ### Ls color ###
 export LSCOLORS="BxfxGxdxcxegedabagacAd"
- 
+
 ### Alias ###
 alias 'updatedb=sudo /usr/libexec/locate.updatedb'
 
 # Misc
 alias 'pingg=ping -c 3 www.google.fr'
+alias 'aslog=tail -f ~/Library/Preferences/Macromedia/Flash\ Player/Logs/flashlog.txt'
+alias 'aslog2=tail -f ~/Library/Application\ Support/Google/Chrome/Default/Pepper\ Data/Shockwave\ Flash/WritableRoot/Logs/flashlog.txt'
 alias 'cd..=cd ..'
 alias 'll=ls -l'
 alias 'la=ls -ahG'
@@ -27,14 +23,19 @@ alias 'r=rails'
 alias 'dj=python manage.py'
 alias 'sr=find . -name "*??*" -print | xargs gunused -i ' #"s/var1/var2/g
 alias 'historyf=history -f'
+#alias 'rm=/usr/local/bin/rm'
 alias 'myip=curl http://bokunotenshi.free.fr/ip.php'
-alias 'rm=~/bin/rm'
 alias 'vacum=play ~/Documents/Music/vacuum.mp3 &>/dev/null </dev/null &'
+alias 'heli=play ~/Documents/Music/heli.mp3 &>/dev/null </dev/null &'
+alias 'addrm=ln -s /Users/igor/admin/bin/rm /usr/local/bin/rm'
+alias 'delrm=/bin/rm /usr/local/bin/rm'
+alias tcpd8080="sudo tcpdump -s 0 -A -i lo0 'tcp port 8080 and (((ip[2:2] - ((ip[0]&0xf)<<2)) - ((tcp[12]&0xf0)>>2)) != 0)'"
+alias watchNcompile='find src/io/nfg/wmg -name "*.as" | entr make run'
 
 alias 'yam=~/dev/PHP/yam/bin/yam'
 
 # rename file with some regex
-alias 'pwet=find . -name "*.coffee" -exec bash -c "echo mv $0 ${0/stuff1/stuff2}" {} \;'
+#find . -name '*' -exec bash -c 'echo mv $0 ${0/stuff1/stuff2}' {} \;
 
 # rename all file to lower case
 ### for f in * ; do mv -v $f `echo $f | tr '[A-Z]' '[a-z]'`; done
@@ -53,31 +54,6 @@ autoload -U colors && colors
 ### Prompt ###
 autoload -U promptinit && promptinit
 
-#prompt walters
-#export TERM=xterm-256color 
-local g="%{$fg[green]%}"
-local r="%{$fg[red]%}"
-local b="%{$fg[blue]%}"
-local c="%{$fg[cyan]%}"
-local _path="${g}%~"
-local ret_status="%?"
-local smiley="%(?,${g}>%b${g}<')))%B°>%b,${r}%)---(><%)---(%b)"
-
-#PS1="%B%{${c}%}>%n${g}:%1d$r}%#%b "
-PS1="%(?,${b}%B╰ ─
-╭─(%b${g}${_path}${b}%B%)─==${smiley}${g} %# ,%B${b}╰ (%b${_path}%B${b}${smiley}${r} %# )"
-
-RPS1="%B─=>%b${b}[%T${b}]-${g}${ret_status}${b}-[${g}%h${b}]${g}%{$reset_color%}"
-
-local cur_cmd="${b}[%_${b}]"
-PS2=" | ${b}➜ ${cur_cmd}> "		#commande incomplete
-PS3=" | Selection ? "         # Select
-PS4=" | Debug (%N:$i)> "      # Trace
-
-#fpath=(~/myfns $fpath)
-#### Correction orthographique
-#SPROMPT=" | ${fg[cyan]}➜ correct '%R' to '%r' ? ([Y]es/[N]o/[E]dit/[A]bort) "
-#fpath=(~/myfns $fpath)
 
 ### History ###
 
@@ -99,8 +75,8 @@ setopt EXTENDED_HISTORY
 #setopt correctall
 
 setopt autocd
-setopt extendedglob 
-setopt always_to_end 
+setopt extendedglob
+setopt always_to_end
 
 ### Keyboard ###
 
@@ -117,7 +93,7 @@ bindkey    "^[3;5~"         delete-char
 
 
 ### Auto Completion ###
-autoload -U compinit && compinit 
+autoload -U compinit && compinit
 
 #Completion
 zstyle ':completion:*' completer _expand _complete _approximate
@@ -143,7 +119,7 @@ zstyle ':completion:*:kill:*' command 'ps -A -o pid,%cpu,%mem,comm'
 
 # Options
 zstyle ':completion:*:options'         auto-description '%d'               #
-zstyle ':completion:*:options'         description 'yes'   
+zstyle ':completion:*:options'         description 'yes'
 
 # Last word
 insert-last-typed-word() { zle insert-last-word -- 0 -1 }; \
@@ -151,7 +127,7 @@ insert-last-typed-word() { zle insert-last-word -- 0 -1 }; \
 
 ### Functions ###
 
-# Smart Compress 
+# Smart Compress
 # Usage : smartcompress file [type]
 compress() {
 	if [ $2 ]; then
@@ -174,7 +150,7 @@ compress() {
 extract() {
 	if [[ -f $1 ]]; then
 		case $1 in
-			*.tar.gz | *.tgz)	tar -xvzf $1 ;;	
+			*.tar.gz | *.tgz)	tar -xvzf $1 ;;
 			*.tar.bz2 | *.tbz2)	tar -xvjf $1 ;;
 			*.tar)			tar -xvf $1 ;;
 			*.gz | *.gzip)		gunzip $1 ;;
@@ -191,7 +167,7 @@ extract() {
 			no)		;;
 			*)		echo "Error: Unknow option $2" ;;
 		esac
-	fi	 
+	fi
 }
 
 function ip {
@@ -222,28 +198,62 @@ zle -N tetris
 bindkey "\el" tetris
 
 #source ~/.rvm/scripts/rvm
-source ~/.nvm/nvm.sh
+#source ~/.nvm/nvm.sh
 
 #[[ -s $HOME/.pythonbrew/etc/bashrc ]] && source $HOME/.pythonbrew/etc/bashrc
 
-PATH=/usr/local/sbin:$PATH
-PATH=/usr/local/bin:$PATH
-PATH=/usr/local/zend/bin:$PATH
-PATH=/usr/local/zend/mysql/bin:$PATH
-PATH=/Applications/AIRSDK_Compiler/bin:$PATH
-LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/zend/lib
+#PATH=/usr/local/sbin:$PATH
 
-#PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
-#PATH="$PATH:$HOME/.nvm/current/bin/"
+export PATH="/usr/local/bin:$PATH"
+export PATH=/Applications/AIRSDK_Compiler/bin:$PATH
 
-
- #source ~/.brew-growl
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
-
-### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
-
-### Added for the zombie module (npm)
-export NODE_PATH=/Users/zell/.nvm/v0.8.14/lib/node_modules/
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+#export AWS_ACCESS_KEY_ID=AKIAI7N5DATC3WD4QQKA
+#export AWS_SECRET_ACCESS_KEY=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
+#export NODE_ENV="jotham-dev"
+
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+
+export ANDROID_HOME=/usr/local/opt/android-sdk
+export AIR_HOME=/Applications/AIRSDK_Compiler
+#export HISTCONTROL=ignorespace
+#export HISTIGNORE='pwd:ls:ansible*'
+setopt -g
+
+
+
+# Presentation and Colors
+#export TERM=xterm-256color
+local g="%{$fg[green]%}"
+local g2="%{$fg[black]%}"
+local r="%{$fg[red]%}"
+local b="%{$fg[blue]%}"
+local c="%{$fg[cyan]%}"
+#local m="%{$fg[magenta]%}"
+local m="%{$F[000]%}"
+local res="%{$reset_color%}"
+local _path="${res}%~"
+local ret_status="%?"
+local smiley="%(?,%b${g}><')))%B°>%b,${r}%)---(><%)---(%b)"
+
+#PS1="%B%{${c}%}>%n${g}:%1d$r}%#%b "
+PS1="%(?,${b}╰ ─
+╭─(${_path}${b}%)─==${smiley}${g} %# ,${b}╰ (${_path}%B${b}${smiley}${r} %# )"
+
+RPS1="%B─=>%b${b}[${res}%T${b}]-${res}${ret_status}${b}-[${res}%h${b}]${res}"
+
+local cur_cmd="${b}[%_${b}]"
+PS2=" | ${b}➜ ${cur_cmd}> "		#commande incomplete
+PS3=" | Selection ? "         # Select
+PS4=" | Debug (%N:$i)> "      # Trace
+
+### Welcome messages ###
+print -P "${res} Welcome to: ${b}%n@%m"
+print -P "${res} Running: ${b}`uname -srm`${res} on ${b}%l"
+print -P "${res} Today is: ${b}%D{%r}"
+
+#fpath=(~/myfns $fpath)
+#### Correction orthographique
+#SPROMPT=" | ${fg[cyan]}➜ correct '%R' to '%r' ? ([Y]es/[N]o/[E]dit/[A]bort) "
+#fpath=(~/myfns $fpath)

@@ -1,0 +1,24 @@
+pane	0	1	:mongod	0	:	1	:/Users/igor/.tmux/resurrect	0	zsh	:
+pane	0	1	:mongod	0	:	2	:/usr/local/var/db/redis	0	redis-cli	:redis-cli monitor
+pane	0	1	:mongod	0	:	3	:/usr/local/var/db/redis	0	redis-server	:redis-server 127.0.0.1:6379 
+pane	0	1	:mongod	0	:	4	:/Users/igor	1	mongod	:mongod -f /etc/mongodb.conf
+pane	0	2	:zsh	0	:	1	:/Users/igor/dev/flash/warmonger	0	zsh	:
+pane	0	2	:zsh	0	:	2	:/Users/igor/dev/flash/warmonger	0	zsh	:
+pane	0	2	:zsh	0	:	3	:/Users/igor/dev/flash/warmonger	0	vim	:vi -S Session.vim
+pane	0	2	:zsh	0	:	4	:/Users/igor/dev/flash/warmonger	1	zsh	:
+pane	0	3	:vim	0	:-	1	:/Users/igor/dev/js/warmonger_front	0	zsh	:
+pane	0	3	:vim	0	:-	2	:/Users/igor/dev/js/warmonger_front	1	make	:/Applications/Xcode.app/Contents/Developer/usr/bin/make watch
+pane	0	3	:vim	0	:-	3	:/Users/igor/dev/js/warmonger_front	0	vim	:vi -S Session.vim
+pane	0	3	:vim	0	:-	4	:/Users/igor/dev/js/warmonger_front	0	Python	:/usr/bin/python /usr/local/Cellar/mitmproxy/0.16/libexec/bin/mitmproxy -p 8001 -R http://localhost:8000/
+pane	0	3	:vim	0	:-	5	:/Users/igor/dev/js/warmonger_front	0	make	:/Applications/Xcode.app/Contents/Developer/usr/bin/make watch
+pane	0	4	:make	1	:*	1	:/Users/igor/dev/js/wmgs_game_server	0	zsh	:
+pane	0	4	:make	1	:*	2	:/Users/igor/dev/js/wmgs_game_server	1	zsh	:
+pane	0	4	:make	1	:*	3	:/Users/igor/dev/js/wmgs_game_server	0	zsh	:
+pane	0	4	:make	1	:*	4	:/Users/igor/dev/js/wmgs_game_server	0	make	:/Applications/Xcode.app/Contents/Developer/usr/bin/make watch
+pane	0	4	:make	1	:*	5	:/Users/igor	0	zsh	:
+pane	0	4	:make	1	:*	6	:	0	reattach-to-user-namespace	:sudo node build/server.js
+window	0	1	0	:	cf79,272x62,0,0[272x40,0,0{143x40,0,0,0,128x40,144,0,3},272x21,0,41{164x21,0,41,4,107x21,165,41,1}]
+window	0	2	0	:	8729,272x62,0,0{154x62,0,0[154x30,0,0,19,154x31,0,31,20],117x62,155,0[117x55,155,0,21,117x6,155,56,22]}
+window	0	3	0	:-	fd75,272x62,0,0{139x62,0,0[139x36,0,0,23,139x25,0,37,24],132x62,140,0[132x43,140,0,25,132x15,140,44,26,132x2,140,60,27]}
+window	0	4	1	:*	0312,272x62,0,0{136x62,0,0[136x31,0,0,28,136x30,0,32,37],135x62,137,0[135x41,137,0,32,135x5,137,42,33,135x7,137,48,34,135x6,137,56,35]}
+state	0	

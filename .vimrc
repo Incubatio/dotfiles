@@ -26,7 +26,7 @@ if has("autocmd")
   "au BufRead *.coffee,*.py set nocindent noautoindent
   au BufRead *.php emenu Snippets.php
   "au BufRead *.php set tabstop =4 softtabstop =4 shiftwidth =4 expandtab
-	au BufRead *.py filetype plugin indent on
+  au BufRead *.py filetype plugin indent on
   au BufRead *.py emenu Snippets.python
   au BufRead *.py set cinwords=if,elif,else,for,while,try,except,finally,def,class tabstop =4 softtabstop =4 shiftwidth =4 expandtab
   au BufRead *.haml,*.rb,*.erb set cinwords=if,elsif,else,unless,for,while,begin,rescue,def,class,module shiftwidth =2
@@ -91,6 +91,7 @@ command DOC PhpDoc
 
 "for vim-better-whitespace plugin
 noremap <leader>l :StripWhitespace<CR>
+noremap <leader>t :%s/\t/  /g<CR>
 "inoremap <leader>n :!osascript /Users/igor/Documents/run.scpt <CR> <CR>
 command NT NERDTree
 
@@ -104,6 +105,13 @@ noremap   <Up>     <NOP>
 noremap   <Down>   <NOP>
 noremap   <Left>   <NOP>
 noremap   <Right>  <NOP>
+
+noremap ; l
+noremap l k
+noremap k j
+noremap j h
+"noremap   l  <NOP>
+"noremap   h  <NOP>
 
 inoremap <Backspace> <NOP>
 noremap <Backspace> <NOP>
@@ -122,9 +130,8 @@ inoremap <C-c>  <esc>
 
 syntax on
 syntax enable
-set background=dark
-"let g:solarized_termcolors=256
-"set background=light
+"set background=dark
+set background=light
 colorscheme turtle
 
 "set background=white
@@ -144,5 +151,6 @@ let g:syntastic_html_tidy_ignore_errors = [
   \ '<path> is not recognized!',
   \ 'discarding unexpected </path>',
   \ 'discarding unexpected <path>',
-  \ 'discarding unexpected <rect>'
+  \ 'discarding unexpected <rect>',
+  \ "'<' + '/' + letter not allowed here"
   \ ]

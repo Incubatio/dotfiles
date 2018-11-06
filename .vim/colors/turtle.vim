@@ -52,7 +52,7 @@ exe 'hi LineNr ctermfg='    . grey . ' ctermbg=' . dark_blue
 exe 'au BufRead,BufNewFile *.rb hi rubySymbol ctermfg=' . green
 
 "match when a line is over 120 chars
-exe 'hi OverLength ctermbg=' . red . ' ctermfg=' . white . ' guibg=' . red
+exe 'hi OverLength ctermbg=' . red . ' ctermfg=' . white
 match OverLength /\%121v.\+/
 "match ErrorMsg '\%>120v.+'
 exe 'hi Search ctermfg=' . dark_black  . ' ctermbg=' . yellow . ' cterm=bold guifg=NONE guibg=NONE gui=underline'

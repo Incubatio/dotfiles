@@ -1,0 +1,18 @@
+[submodule ".tmux/plugins/tmux-resurrect"]
+	path = .tmux/plugins/tmux-resurrect
+	url = https://github.com/tmux-plugins/tmux-resurrect.git
+[submodule ".tmux/plugins/tmux-sensible"]
+	path = .tmux/plugins/tmux-sensible
+	url = https://github.com/tmux-plugins/tmux-sensible.git
+[submodule ".tmux/plugins/tpm"]
+	path = .tmux/plugins/tpm
+	url = https://github.com/tmux-plugins/tpm.git
+[submodule ".vim/bundle/syntastic"]
+	path = .vim/bundle/syntastic
+	url = https://github.com/vim-syntastic/syntastic.git
+[submodule ".vim/bundle/ctrlp.vim"]
+	path = .vim/bundle/ctrlp.vim
+	url = https://github.com/kien/ctrlp.vim.git
+[submodule ".vim/bundle/Vundle.vim"]
+	path = .vim/bundle/Vundle.vim
+	url = https://github.com/VundleVim/Vundle.vim.git

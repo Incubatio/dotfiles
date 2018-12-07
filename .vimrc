@@ -1,3 +1,22 @@
+"Begin Vundle
+set nocompatible
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'VundleVim/Vundle.vim'
+
+Plugin 'vim-syntastic/syntastic'
+Plugin 'kien/ctrlp.vim'
+Plugin 'tpope/vim-obsession'
+Plugin 'ntpeters/vim-better-whitespace'
+Plugin 'honza/vim-snippets'
+Plugin 'airblade/vim-gitgutter'
+
+"End vundle
+call vundle#end()
+filetype plugin indent on
+
+
 " Number of line and
 set nu
 set showmatch
@@ -22,17 +41,19 @@ set autoindent
 set expandtab
 set wrap
 
+set cc=100
+
 if has("autocmd")
   "au BufRead *.coffee,*.py set nocindent noautoindent
-  au BufRead *.php emenu Snippets.php
+  "au BufRead *.php emenu Snippets.php
   "au BufRead *.php set tabstop =4 softtabstop =4 shiftwidth =4 expandtab
-  au BufRead *.py filetype plugin indent on
-  au BufRead *.py emenu Snippets.python
-  au BufRead *.py set cinwords=if,elif,else,for,while,try,except,finally,def,class tabstop =4 softtabstop =4 shiftwidth =4 expandtab
-  au BufRead *.haml,*.rb,*.erb set cinwords=if,elsif,else,unless,for,while,begin,rescue,def,class,module shiftwidth =2
+  "au BufRead *.py filetype plugin indent on
+  "au BufRead *.py emenu Snippets.python
+  "au BufRead *.py set cinwords=if,elif,else,for,while,try,except,finally,def,class tabstop =4 softtabstop =4 shiftwidth =4 expandtab
+  "au BufRead *.haml,*.rb,*.erb set cinwords=if,elsif,else,unless,for,while,begin,rescue,def,class,module shiftwidth =2
     "au BufRead *.py set smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
     "au BufRead *.rb set smartindent cinwords=if,elsif,else,unless,for,while,begin,rescue,def,class,module
-  au BufRead,BufNewFile *.as set ft=actionscript
+  "au BufRead,BufNewFile *.as set ft=actionscript
 endif
 
 "nnoremap <F2> :set invet <bar> retab!<CR>
@@ -75,8 +96,7 @@ set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
 
-"set runtimepath^=~/.vim/plugin/ctrlp.vim
-execute pathogen#infect()
+"execute pathogen#infect()
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1

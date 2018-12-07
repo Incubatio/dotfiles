@@ -193,9 +193,9 @@ else
 fi
 }
 
-autoload -U tetris
-zle -N tetris
-bindkey "\el" tetris
+#autoload -U tetris
+#zle -N tetris
+#bindkey "\el" tetris
 
 #source ~/.rvm/scripts/rvm
 #source ~/.nvm/nvm.sh
@@ -206,6 +206,7 @@ bindkey "\el" tetris
 
 export PATH="/usr/local/bin:$PATH"
 export PATH=/Applications/AIRSDK_Compiler/bin:$PATH
+export PATH=/usr/local/Cellar/node/11.1.0/bin:$PATH
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 

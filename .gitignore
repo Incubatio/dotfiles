@@ -25,3 +25,4 @@ client/audio/music
 .DS_Store
 *.swp
 .netrwhist
+.vim/bundle

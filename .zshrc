@@ -1,13 +1,8 @@
-#if [ -x /usr/libexec/path_helper ]; then
-#	eval `/usr/libexec/path_helper -s`
-
 ### Ls color ###
 export LSCOLORS="BxfxGxdxcxegedabagacAd"
 
 ### Alias ###
 alias 'updatedb=sudo /usr/libexec/locate.updatedb'
-
-# Misc
 alias 'pingg=ping -c 3 www.google.fr'
 alias 'aslog=tail -f ~/Library/Preferences/Macromedia/Flash\ Player/Logs/flashlog.txt'
 alias 'aslog2=tail -f ~/Library/Application\ Support/Google/Chrome/Default/Pepper\ Data/Shockwave\ Flash/WritableRoot/Logs/flashlog.txt'
@@ -21,7 +16,10 @@ alias 'ls=ls -G'
 alias 'e2=sudo killall e2fsck'
 alias 'r=rails'
 alias 'dj=python manage.py'
-alias 'sr=find . -name "*??*" -print | xargs gunused -i ' #"s/var1/var2/g
+alias 'sr=find . -name "*??*" -print | xargs gsed -i ' #"s/var1/var2/g
+#find . -name '*' -exec bash -c 'echo mv $0 ${0/stuff1/stuff2}' {} \;
+# rename all file to lower case
+# for f in * ; do mv -v $f `echo $f | tr '[A-Z]' '[a-z]'`; done
 alias 'historyf=history -f'
 #alias 'rm=/usr/local/bin/rm'
 alias 'myip=curl http://bokunotenshi.free.fr/ip.php'
@@ -32,21 +30,45 @@ alias 'delrm=/bin/rm /usr/local/bin/rm'
 alias tcpd8080="sudo tcpdump -s 0 -A -i lo0 'tcp port 8080 and (((ip[2:2] - ((ip[0]&0xf)<<2)) - ((tcp[12]&0xf0)>>2)) != 0)'"
 alias watchNcompile='find src/io/nfg/wmg -name "*.as" | entr make run'
 
-alias 'yam=~/dev/PHP/yam/bin/yam'
+alias mcs="/Applications/Unity/Hub/Editor/2018.3.2f1/Unity.app/Contents/MonoBleedingEdge/bin/mcs"
 
-# rename file with some regex
-#find . -name '*' -exec bash -c 'echo mv $0 ${0/stuff1/stuff2}' {} \;
+### Perforce ###
+alias p4changelists="p4 changelists -u \$P4USER"
+alias p4changes="p4 changes -u \$P4USER"
+alias p4shelved="p4 changelists -u \$P4USER -s shelved"
 
-# rename all file to lower case
-### for f in * ; do mv -v $f `echo $f | tr '[A-Z]' '[a-z]'`; done
+p4get_last_change() { p4 changelists -u nmorel -m1 | awk '{print $2}' }
+alias p4last=p4get_last_change
+
+p4newreview() { p4collab newreview $P4PORT $P4USER $P4CLIENT $1 }
+
+p4opened() {
+  if [ -z "$1" ]; then
+    #p4 opened -u $P4USER | sed -e 's/#.*//'
+    p4 opened -C $P4CLIENT | sed -e 's/#.*//'
+  else
+    #p4 opened -u $P4USER -c $1 | sed -e 's/#.*//'
+    p4 opened -C $P4CLIENT -c $1 | sed -e 's/#.*//'
+  fi
+} # require changeset_num
+
+p4diff() {
+  if [ -z "$1" ]; then
+    1=default
+  fi
+    p4opened $1 | p4 -x - diff - | colordiff
+}
+
+p4diff2() { diff -Naus <(p4 print $(p4 where $1 | awk '{print $1;}') | tail -n +2) $1 | colordiff } # require <file_name>
+
+# Unity stuff
+alias elog="tail -f ~/Library/Logs/Unity/Editor.log"
+alias plog="tail -f ~/Library/Logs/Unity/Player.log"
+
 
 ### Default EDitors ###
-export SVN_EDITOR=vim
 export EDITOR=vim
 
-## MacPorts ##
-#export PATH=$PATH:/usr/local/bin:/usr/local/sbin
-#export MANPATH=$MANPATH:/opt/local/share/man
 
 ### Style ###
 autoload -U colors && colors
@@ -56,7 +78,6 @@ autoload -U promptinit && promptinit
 
 
 ### History ###
-
 export HISTSIZE=5000
 export SAVEHIST=$HISTSIZE
 export HISTFILE="$HOME/.zsh_history"
@@ -68,22 +89,22 @@ setopt INC_APPEND_HISTORY
 setopt SHARE_HISTORY
 #Extended format for history
 setopt EXTENDED_HISTORY
+#export HISTCONTROL=ignorespace
+#export HISTIGNORE='pwd:ls:ansible*'
+setopt -g
 
 
 ### Misc ###
-
 #setopt correctall
-
 setopt autocd
 setopt extendedglob
 setopt always_to_end
 
 ### Keyboard ###
-
 bindkey -e
 # bindkey "\177" delete-char
-bindkey    "^[[3~"          delete-char
-bindkey    "^[3;5~"         delete-char
+#bindkey    "^[[3~"          delete-char
+#bindkey    "^[3;5~"         delete-char
 
 ### Error color ###
 # exec 2>>(while read line; do
@@ -103,7 +124,6 @@ zstyle ':completion:*' list-colors ''
 zstyle ':completion:*' menu select=1
 zstyle ':completion:*' original true
 zstyle ':completion:*:approximate:*' max-errors par 'reply=( $(( ($#PREFIX+$#SUFFIX)/3 )) numeric )'
-
 
 zstyle ':completion:*' list-colors "$LS_COLORS"
 zstyle ':completion:*:descriptions' no
@@ -125,49 +145,50 @@ zstyle ':completion:*:options'         description 'yes'
 insert-last-typed-word() { zle insert-last-word -- 0 -1 }; \
   zle -N insert-last-typed-word; bindkey "\em" insert-last-typed-word
 
-### Functions ###
+
+### Archive Functions ###
 
 # Smart Compress
 # Usage : smartcompress file [type]
 compress() {
-	if [ $2 ]; then
-        	case $2 in
-                	tgz | tar.gz)   tar -zcvf $1.$2 $1 ;;
-                        tbz2 | tar.bz2) tar -jcvf $1.$2 $1 ;;
-                        tar)            tar -cvf $1.$2  $1 ;;
-                        gz | gzip)      gzip $1 ;;
-                        bz2 | bzip2)    bzip2 $1 ;;
-			zip)		zip -rv $1.zip $1 ;;
-                        *) 		echo "Error: $2 is not a valid compression type" ;;
-                esac
-	else
-                smartcompress $1 tar.gz
-        fi
+  if [ $2 ]; then
+    case $2 in
+      tgz | tar.gz)   tar -zcvf $1.$2 $1 ;;
+      tbz2 | tar.bz2) tar -jcvf $1.$2 $1 ;;
+      tar)            tar -cvf $1.$2  $1 ;;
+      gz | gzip)      gzip $1 ;;
+      bz2 | bzip2)    bzip2 $1 ;;
+      zip)    zip -rv $1.zip $1 ;;
+      *)     echo "Error: $2 is not a valid compression type" ;;
+    esac
+  else
+    smartcompress $1 tar.gz
+  fi
 }
 
 # Smart Extract
 # Usage : smartextract file
 extract() {
-	if [[ -f $1 ]]; then
-		case $1 in
-			*.tar.gz | *.tgz)	tar -xvzf $1 ;;
-			*.tar.bz2 | *.tbz2)	tar -xvjf $1 ;;
-			*.tar)			tar -xvf $1 ;;
-			*.gz | *.gzip)		gunzip $1 ;;
-			*.bz2 | *.bzip2)	bunzip2 $1 ;;
-			*.zip)			unzip $1 ;;
-			*) 			echo "Error: $1 is not a valid archive" ;;
-		esac
-	else
-		echo "Error: $1 is not a valid file"
-	fi
-	if [ $2 ]; then
-		case $2 in
-			yes)		rm -f $1 ;;
-			no)		;;
-			*)		echo "Error: Unknow option $2" ;;
-		esac
-	fi
+  if [[ -f $1 ]]; then
+    case $1 in
+      *.tar.gz | *.tgz)  tar -xvzf $1 ;;
+      *.tar.bz2 | *.tbz2)  tar -xvjf $1 ;;
+      *.tar)      tar -xvf $1 ;;
+      *.gz | *.gzip)    gunzip $1 ;;
+      *.bz2 | *.bzip2)  bunzip2 $1 ;;
+      *.zip)      unzip $1 ;;
+      *)       echo "Error: $1 is not a valid archive" ;;
+    esac
+  else
+    echo "Error: $1 is not a valid file"
+  fi
+  if [ $2 ]; then
+    case $2 in
+      yes)    rm -f $1 ;;
+      no)    ;;
+      *)    echo "Error: Unknow option $2" ;;
+    esac
+  fi
 }
 
 function ip {
@@ -193,38 +214,25 @@ else
 fi
 }
 
-#autoload -U tetris
-#zle -N tetris
-#bindkey "\el" tetris
 
-#source ~/.rvm/scripts/rvm
-#source ~/.nvm/nvm.sh
-
-#[[ -s $HOME/.pythonbrew/etc/bashrc ]] && source $HOME/.pythonbrew/etc/bashrc
-
-#PATH=/usr/local/sbin:$PATH
+### PATH EXPORTS ####
 
 export PATH="/usr/local/bin:$PATH"
 export PATH=/Applications/AIRSDK_Compiler/bin:$PATH
-export PATH=/usr/local/Cellar/node/11.1.0/bin:$PATH
+export PATH=/usr/local/Cellar/node/11.12.0/bin/:$PATH
+export PATH=/Applications/Unity/Hub/Editor/2018.3.2f1/Unity.app/Contents/MonoBleedingEdge/bin/:$PATH
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-#export AWS_ACCESS_KEY_ID=AKIAI7N5DATC3WD4QQKA
-#export AWS_SECRET_ACCESS_KEY=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
-#export NODE_ENV="jotham-dev"
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
 export ANDROID_HOME=/usr/local/opt/android-sdk
 export AIR_HOME=/Applications/AIRSDK_Compiler
-#export HISTCONTROL=ignorespace
-#export HISTIGNORE='pwd:ls:ansible*'
-setopt -g
 
 
 
-# Presentation and Colors
+### Presentation and colors ###
+
 #export TERM=xterm-256color
 local g="%{$fg[green]%}"
 local g2="%{$fg[black]%}"
@@ -245,7 +253,7 @@ PS1="%(?,${b}╰ ─
 RPS1="%B─=>%b${b}[${res}%T${b}]-${res}${ret_status}${b}-[${res}%h${b}]${res}"
 
 local cur_cmd="${b}[%_${b}]"
-PS2=" | ${b}➜ ${cur_cmd}> "		#commande incomplete
+PS2=" | ${b}➜ ${cur_cmd}> "    #commande incomplete
 PS3=" | Selection ? "         # Select
 PS4=" | Debug (%N:$i)> "      # Trace
 

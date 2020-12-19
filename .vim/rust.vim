@@ -1,5 +1,6 @@
 let g:ale_fixers =  { 'rust': ['rustfmt'] }
 let g:ale_linters = { 'rust': ['rls'] }
+let g:ale_rust_rls_executable = 'rust-analyzer'
 
 """ neoclide/coc config
 " TODO: maybe coc has support for omnisharp ?

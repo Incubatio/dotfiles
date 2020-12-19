@@ -221,7 +221,7 @@ fi
 export PATH="/usr/local/bin:$PATH"
 export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 export PATH="$HOME/.air/bin:$PATH"
-export PATH="$HOME/.unity/bin:$PATH
+export PATH="$HOME/.unity/bin:$PATH"
 export PATH="$HOME/.node/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting

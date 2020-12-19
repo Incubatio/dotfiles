@@ -20,6 +20,9 @@ Plugin 'OmniSharp/omnisharp-vim'
 Plugin 'leafgarland/typescript-vim'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'fatih/vim-go'
+Plugin 'rust-lang/rust.vim'
+Plugin 'neoclide/coc.nvim'
+
 
 "End vundle
 call vundle#end()
@@ -113,6 +116,8 @@ let g:perforce_prompt_on_open=0
 nmap <silent> <C-l> <Plug>(ale_previous_wrap)
 nmap <silent> <C-k> <Plug>(ale_next_wrap)
 let g:ale_history_log_output = 1
+let g:ale_sign_error = "✗"
+let g:ale_sign_warning = "⚠"
 
 let g:signify_vcs_list = [ 'git', 'perforce' ]
 highlight SignifySignAdd    cterm=bold ctermbg=none  ctermfg=green
@@ -122,7 +127,11 @@ highlight SignColumn ctermbg=NONE cterm=NONE guibg=NONE gui=NONE
 let g:signify_sign_change = '~'
 let g:signify_sign_changedelete      = g:signify_sign_change
 
-source ~/.vim/omnisharp.vim
+
+if has("autocmd")
+  au BufRead *.cs source ~/.vim/omnisharp.vim
+  au BufRead *.rs source ~/.vim/rust.vim
+endif
 
 "enable per project .vimrc
 set exrc

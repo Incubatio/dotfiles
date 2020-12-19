@@ -1,5 +1,6 @@
 ### Ls color ###
 export LSCOLORS="BxfxGxdxcxegedabagacAd"
+export GOPATH="~/dev/go"
 
 ### Alias ###
 alias 'updatedb=sudo /usr/libexec/locate.updatedb'
@@ -25,7 +26,7 @@ alias 'historyf=history -f'
 alias 'myip=curl http://bokunotenshi.free.fr/ip.php'
 alias 'vacum=play ~/Documents/Music/vacuum.mp3 &>/dev/null </dev/null &'
 alias 'heli=play ~/Documents/Music/heli.mp3 &>/dev/null </dev/null &'
-alias 'addrm=ln -s /Users/igor/admin/bin/rm /usr/local/bin/rm'
+alias "addrm=ln -s $HOME/admin/bin/rm /usr/local/bin/rm"
 alias 'delrm=/bin/rm /usr/local/bin/rm'
 alias tcpd8080="sudo tcpdump -s 0 -A -i lo0 'tcp port 8080 and (((ip[2:2] - ((ip[0]&0xf)<<2)) - ((tcp[12]&0xf0)>>2)) != 0)'"
 alias watchNcompile='find src/io/nfg/wmg -name "*.as" | entr make run'
@@ -218,13 +219,16 @@ fi
 ### PATH EXPORTS ####
 
 export PATH="/usr/local/bin:$PATH"
-export PATH=/Applications/AIRSDK_Compiler/bin:$PATH
-export PATH=/usr/local/Cellar/node/11.12.0/bin/:$PATH
-export PATH=/Applications/Unity/Hub/Editor/2018.3.2f1/Unity.app/Contents/MonoBleedingEdge/bin/:$PATH
+export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+export PATH="$HOME/.air/bin:$PATH"
+export PATH="$HOME/.unity/bin:$PATH
+export PATH="$HOME/.node/bin:$PATH"
+export PATH="$HOME/.cargo/bin:$PATH"
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+export GOPATH="$HOME/go";export GOROOT="$HOME/.go"; export PATH="$GOPATH/bin:$PATH"; # g-install: do NOT edit, see https://github.com/stefanmaric/g
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
 export ANDROID_HOME=/usr/local/opt/android-sdk
 export AIR_HOME=/Applications/AIRSDK_Compiler

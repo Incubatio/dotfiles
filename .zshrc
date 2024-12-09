@@ -18,6 +18,7 @@ alias 'e2=sudo killall e2fsck'
 alias 'r=rails'
 alias 'dj=python manage.py'
 alias 'sr=find . -name "*??*" -print | xargs gsed -i ' #"s/var1/var2/g
+alias 'vi=vim'
 #find . -name '*' -exec bash -c 'echo mv $0 ${0/stuff1/stuff2}' {} \;
 # rename all file to lower case
 # for f in * ; do mv -v $f `echo $f | tr '[A-Z]' '[a-z]'`; done
